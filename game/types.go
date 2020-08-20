@@ -91,24 +91,23 @@ func (g *Game) update() {
 }
 
 func (g *Game) inCreaseSpeed() {
-	g.trex.Mu.Lock()
-	defer g.trex.Mu.Unlock()
-
-	g.cactus.Mu.Lock()
-	defer g.cactus.Mu.Unlock()
-
-	g.ground.Mu.Lock()
-	defer g.ground.Mu.Unlock()
 
 	go func() {
 		tick := time.NewTicker(15 * time.Second)
 		for {
 			select {
 			case <-tick.C:
+				g.cactus.Mu.Lock()
+				g.clouds.Mu.Lock()
+				g.ground.Mu.Lock()
+
 				g.cactus.Speed += 0.001
 				g.clouds.Speed += 0.001
 				g.ground.Speed += 0.001
 				// g.ground.SleepTime -= 0.1
+				g.cactus.Mu.Unlock()
+				g.clouds.Mu.Unlock()
+				g.ground.Mu.Unlock()
 			}
 		}
 	}()
