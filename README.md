@@ -23,14 +23,13 @@ Includes the binary file, use that instead if it doesn't compile on your version
 ##### compile for linux on mac
 * Use the provided dockerfile to compile it for `linux amd64` 
 ##### compile for windows on mac
-* 
 ```
 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc GOOS=windows GOARCH=amd64 go build -tags static -ldflags "-s -w"
 ```
 
 ### Controls 
-* SPACE BAR to jump
-* Game auto restarts after 1 second of game over
+* `SPACE BAR` to jump
+* Game auto restarts after 1 second on game over
 
 ### Useful links for references
 1. https://github.com/veandco/sdl2
