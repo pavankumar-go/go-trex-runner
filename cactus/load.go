@@ -28,28 +28,29 @@ func NewCactus(renderer *sdl.Renderer) (*Cactus, error) {
 		}
 		cactus.Texture = append(cactus.Texture, texture)
 	}
-	var m sync.Mutex
+
 	go func() {
 		for {
+			cactus.Mu.Lock()
 			cactus.Cactus = append(cactus.Cactus, NewCacti())
-
-			time.Sleep(time.Duration(genRandom(int(cactus.RandomNumber), &m)) * time.Second)
+			cactus.Mu.Unlock()
+			time.Sleep(time.Duration(genRandom(int(cactus.RandomNumber), &cactus.Mu)) * time.Second)
 		}
 	}()
 
 	return cactus, nil
 }
 
-func genRandom(random int, m *sync.Mutex) int {
-	m.Lock()
+func genRandom(random int, mu *sync.RWMutex) int {
+	mu.Lock()
+	defer mu.Unlock()
 	i := 0
 	rand.Seed(time.Now().UnixNano())
 	p := rand.Perm(random)
-
 	for _, r := range p[:random] {
 		i = r
 	}
-	m.Unlock()
+
 	return i
 }
 

@@ -29,12 +29,16 @@ func (c *Cactus) Update() {
 	c.Mu.Lock()
 	defer c.Mu.Unlock()
 	for _, i := range c.Cactus {
+		i.Mu.Lock()
 		i.X -= int32(c.Speed)
+		i.Mu.Unlock()
 	}
 }
 
 // Destroy destroys texture on exit
 func (c *Cactus) Destroy() {
+	c.Mu.Lock()
+	defer c.Mu.Unlock()
 	for _, texture := range c.Texture {
 		texture.Destroy()
 	}
