@@ -24,8 +24,10 @@ func NewClouds(renderer *sdl.Renderer) (*Clouds, error) {
 
 	go func() {
 		for {
+			clouds.Mu.Lock()
 			clouds.clouds = append(clouds.clouds, NewCloud())
-			time.Sleep(4 * time.Second) // sleeps for 5 seconds before displaying next cloud on wondow
+			clouds.Mu.Unlock()
+			time.Sleep(3 * time.Second) // sleeps for 5 seconds before displaying next cloud on wondow
 		}
 	}()
 

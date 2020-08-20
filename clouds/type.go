@@ -27,11 +27,15 @@ func (c *Clouds) Update() {
 	c.Mu.Lock()
 	defer c.Mu.Unlock()
 	for _, i := range c.clouds {
+		i.Mu.Lock()
 		i.X -= int32(c.Speed)
+		i.Mu.Unlock()
 	}
 }
 
 // Destroy destroys texture on exit
 func (c *Clouds) Destroy() {
+	c.Mu.Lock()
+	defer c.Mu.Unlock()
 	c.Texture.Destroy()
 }
