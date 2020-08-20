@@ -5,7 +5,7 @@ I tried writing Google Chrome's offline T-Rex game in Go by using veandco/sdl2 p
 it's missing lot of features, hence it is not meant to be the ultimate Go-Code, but it is meant to be **simple**, **easy to understand** and yes its **playable**
 This project is distributed under the [DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE](https://en.wikipedia.org/wiki/WTFPL).
 
-![Game Screenshot](https://github.com/pavankumar-go/go-trex-runner/blob/master/assets/img/game-screenshot.png?raw=true)
+![Game Screenshot](https://github.com/pavankumar-go/go-trex-runner/blob/master/assets/img/Trex-Go.gif?raw=true)
 
 ### Requirements for Running it on Mac OS (Tested & Works on Catalina)
 * Go lang - `version go1.13+ darwin/amd64` (https://golang.org/dl/)
