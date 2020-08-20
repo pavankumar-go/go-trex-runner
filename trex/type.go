@@ -48,8 +48,8 @@ func (t *TRex) Jump() {
 
 // Destroy destroys texture on exit
 func (t *TRex) Destroy() {
-	t.Mu.RLock()
-	defer t.Mu.RUnlock()
+	t.Mu.Lock()
+	defer t.Mu.Unlock()
 	for _, texture := range t.Texture {
 		texture.Destroy()
 	}
