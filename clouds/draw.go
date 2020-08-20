@@ -19,6 +19,8 @@ func (c *Clouds) Draw(renderer *sdl.Renderer) error {
 
 // Draw draws cloud on window
 func (c *Cloud) Draw(renderer *sdl.Renderer, texture *sdl.Texture) error {
+	c.Mu.RLock()
+	defer c.Mu.RUnlock()
 	rect := &sdl.Rect{X: c.X, Y: c.Y, W: c.W, H: c.H}
 	if err := renderer.Copy(texture, nil, rect); err != nil {
 		return err

@@ -22,7 +22,9 @@ func NewTrex(renderer *sdl.Renderer) (*TRex, error) {
 			return nil, err
 		}
 
+		trex.Mu.Lock()
 		trex.Texture = append(trex.Texture, texture)
+		trex.Mu.Unlock()
 	}
 
 	return trex, nil

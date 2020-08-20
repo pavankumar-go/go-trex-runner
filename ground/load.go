@@ -17,16 +17,18 @@ func NewGrounds(renderer *sdl.Renderer) (*Grounds, error) {
 	}
 
 	grounds := &Grounds{
-		Texture:   texture,
-		Renderer:  renderer,
-		Speed:     3.0,
-		SleepTime: 3.0,
+		Texture:  texture,
+		Renderer: renderer,
+		Speed:    3.0,
+		// SleepTime: 2,
 	}
 
 	go func() {
 		for {
+			grounds.Mu.Lock()
 			grounds.grounds = append(grounds.grounds, NewGround())
-			time.Sleep(3 * time.Second)
+			grounds.Mu.Unlock()
+			time.Sleep(2 * time.Second)
 		}
 	}()
 
